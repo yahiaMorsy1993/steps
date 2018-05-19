@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Application;
+use DB;
 
 class ApplicationController extends Controller
 {
@@ -40,8 +41,14 @@ class ApplicationController extends Controller
         $application->save();
         return redirect('/saved');
 
-
-
-
     }
+
+
+    public function admin_view(){
+      $views = \App\Application::orderBy('name', 'asc')->get();
+      $views = DB::table('application')->paginate(1);
+      return view('admin' , compact('views') );
+    }
+
+
 }
