@@ -1,4 +1,7 @@
 <?php
+use Illuminate\Http\Request;
+use App\Application;
+use Illuminate\Support\Facades\Input;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +24,7 @@ Route::get('/home', 'ApplicationController@index');
 Route::get('/saved' ,'ApplicationController@ThanksPage' );
 Route::post('/saved' ,'ApplicationController@store' );
 Route::get('/admin/panel' ,'ApplicationController@admin_view');
+
+
 
 ?>

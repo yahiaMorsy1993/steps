@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-<table class="table table-hover" id="example" style="width:100%">
+<table class="table table-hover" id="example" style="width:100%" name="example">
   <thead>
 <tr>
     <th>Name</th>
@@ -34,14 +34,40 @@
     <th>Age</th>
     <th>Salary</th>
 </tr>
-</tfoot>
 
+</tfoot>
 </div>
 
-{{ $views->links() }}
-<strong>number of records here </strong> : {{ $views->count() }}
-<strong> Current Page : </strong>{{$views->currentPage() }}
-<strong> Firist Item : </strong>{{$views->firstItem() }}
-<button class="btn btn-danger" href="{{$views->lastPage() }}">last page</button>
-<strong> Firist Item : </strong>{{$views->lastPage() }}
+<nav class="navbar navbar-light bg-light">
+      {{ csrf_field() }}
+      <div class="input-group" >
+          <input type="search" class="form-control" name="q"
+              placeholder="Search users"> <span class="input-group-btn">
+          </span>
+      </div>
+</nav>
+
+</table>
+
+@if($views->hasPages())
+
+<div align="center">
+  {{ $views->links('vendor.pagination.custom') }}
+</div>
+
+@endif
+
+<label class="badge badge-secondary">number of records here : {{ $views->count() }} </label>
+<label class="badge badge-secondary">Total records : {{$views->total()}} </label>
+
+<script>
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "pagingType": "full_numbers",
+        "search" : "true"
+    } );
+} );
+</script>
+
+
 @endsection

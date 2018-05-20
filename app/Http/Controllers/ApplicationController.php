@@ -39,16 +39,18 @@ class ApplicationController extends Controller
         $application->salary = $request->salary;
 
         $application->save();
-        return redirect('/saved');
+        return redirect('/home');
 
     }
 
 
     public function admin_view(){
       $views = \App\Application::orderBy('name', 'asc')->get();
-      $views = DB::table('application')->paginate(1);
+      $views = DB::table('application')->paginate(2);
       return view('admin' , compact('views') );
     }
 
 
-}
+
+
+    }
