@@ -28,7 +28,7 @@
 
 <tfoot>
 <tr>
-    <th>Name</th>
+    <th class="sorting_asc" >Name</th>
     <th>Position</th>
     <th>Office</th>
     <th>Age</th>
@@ -37,15 +37,6 @@
 
 </tfoot>
 </div>
-
-<nav class="navbar navbar-light bg-light">
-      {{ csrf_field() }}
-      <div class="input-group" >
-          <input type="search" class="form-control" name="q"
-              placeholder="Search users"> <span class="input-group-btn">
-          </span>
-      </div>
-</nav>
 
 </table>
 
@@ -57,17 +48,18 @@
 
 @endif
 
+<form class="navbar-form" role="search" method="GET" action="{{url("/search")}}">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="name">
+            <div class="input-group-btn">
+                <button class="btn btn-warning" type="submit">Search Records</button>
+            </div>
+        </div>
+</form>
 <label class="badge badge-secondary">number of records here : {{ $views->count() }} </label>
 <label class="badge badge-secondary">Total records : {{$views->total()}} </label>
 
-<script>
-$(document).ready(function() {
-    $('#example').DataTable( {
-        "pagingType": "full_numbers",
-        "search" : "true"
-    } );
-} );
-</script>
+
 
 
 @endsection

@@ -25,6 +25,11 @@ Route::get('/saved' ,'ApplicationController@ThanksPage' );
 Route::post('/saved' ,'ApplicationController@store' );
 Route::get('/admin/panel' ,'ApplicationController@admin_view');
 
+Route::get('/search' ,'ApplicationController@search_view');
+
+Route::get('/search' ,'ApplicationController@search');
+
+
 
 
 ?>

@@ -50,6 +50,16 @@ class ApplicationController extends Controller
       return view('admin' , compact('views') );
     }
 
+    public function search_view(){
+        return view('search',compact('results'));
+    }
+
+    public function search(){
+       $searchkey = \Request::get('name');
+       $results =  Application::where('name', 'like', '%' .$searchkey. '%')->orderBy('name')->paginate(5);
+       return view('search', ['results' => $results]);
+   }
+
 
 
 
